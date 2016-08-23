@@ -21,6 +21,15 @@ public class DepartmentAction extends ActionSupport implements
 
 	@Resource
 	private DepartmentService departmentService;
+	private Long parentId;
+
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
 
 	// ............................ModelDriven....................................
 	private Department model = new Department();
@@ -31,10 +40,19 @@ public class DepartmentAction extends ActionSupport implements
 
 	// ........................................................................
 
-	/** 列表 */
+	/** 部门的列表 */
 	public String list() throws Exception {
-		List<Department> departmentList = departmentService.findAll();
+		List<Department> departmentList = null;
+		if (parentId == null) {
+			departmentList = departmentService.findTopList();
+		} else {
+			// 子部门列表
+			departmentList = departmentService.finChildList(parentId);
+
+		}
+
 		ActionContext.getContext().put("departmentList", departmentList);
+
 		return "list";
 	}
 
@@ -46,17 +64,25 @@ public class DepartmentAction extends ActionSupport implements
 
 	/** 添加页面 */
 	public String addUI() throws Exception {
+		// 准备数据
+		List<Department> departmentList = departmentService.findAll();
+		// 放到Map里面
+		ActionContext.getContext().put("departmentList", departmentList);
 		return "saveUI";
 	}
 
 	/** 添加 */
 	public String add() throws Exception {
-		// Department department = new Department();
-		// department.setName(name);
-		// department.setDescription(description)
+		Department department = new Department();
+		department.setName(model.getName());
+		department.setDescription(model.getDescription());
+		// 关联上级部门！！！！！！！！！！！！！！！！！！！！！！！！！
+		Department parent = departmentService.getById(parentId);
+		model.setParent(parent);
+		department.setParent(model.getParent());
 
 		// 保存
-		departmentService.save(model);
+		departmentService.save(department);
 
 		return "toList";
 	}
@@ -65,6 +91,10 @@ public class DepartmentAction extends ActionSupport implements
 	public String editUI() throws Exception {
 		// 准备回显的数据
 		Department department = departmentService.getById(model.getId());
+		List<Department> departmentList = departmentService.findAll();
+		Department parent = departmentService.getById(parentId);
+		ActionContext.getContext().put("departmentList", departmentList);
+
 		ActionContext.getContext().getValueStack().push(department);
 		return "saveUI";
 	}
@@ -73,10 +103,12 @@ public class DepartmentAction extends ActionSupport implements
 	public String edit() throws Exception {
 		// 1，从数据库取出原对象
 		Department department = departmentService.getById(model.getId());
+		Department parent = departmentService.getById(parentId);
 
 		// 2，设置要修改的属性
 		department.setName(model.getName());
 		department.setDescription(model.getDescription());
+		department.setParent(parent);
 
 		// 3，更新到数据库中
 		departmentService.update(department);

@@ -16,5 +16,9 @@ public interface DepartmentService {
 
 	void update(Department department);
 
+	List<Department> findTopList();
+
+
+	List<Department> finChildList(Long parentId);
 
 }

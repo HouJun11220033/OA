@@ -54,7 +54,7 @@
         </tbody>
     </table>
     
-    <!-- 其他功能超链接 -->
+    <!-- 新建 -->
     <div id="TableTail">
         <div id="TableTail_inside">
             <s:a action="department_addUI"><img src="${pageContext.request.contextPath}/style/images/createNew.png" /></s:a>
