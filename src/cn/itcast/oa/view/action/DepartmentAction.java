@@ -73,16 +73,15 @@ public class DepartmentAction extends ActionSupport implements
 
 	/** 添加 */
 	public String add() throws Exception {
-		Department department = new Department();
-		department.setName(model.getName());
-		department.setDescription(model.getDescription());
+		// Department department = new Department();
+		// department.setName(model.getName());
+		// department.setDescription(model.getDescription());
 		// 关联上级部门！！！！！！！！！！！！！！！！！！！！！！！！！
 		Department parent = departmentService.getById(parentId);
 		model.setParent(parent);
-		department.setParent(model.getParent());
 
 		// 保存
-		departmentService.save(department);
+		departmentService.save(model);
 
 		return "toList";
 	}
