@@ -39,6 +39,14 @@
 			<result name="editUI_new">/WEB-INF/jsp/roleAction/new/saveUI.jsp</result>
 
 		</action>
+		
+		
+		<!-- 部门管理 -->
+		<action name="department_*" class="departmentAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/departmentAction/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/departmentAction/saveUI.jsp</result>
+			<result name="toList" type="redirectAction">department_list</result>
+		</action>
 
 
 	</package>
