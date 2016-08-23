@@ -14,6 +14,7 @@ public class TestAction extends ActionSupport {
 	@Resource
 	private TestService testService;
 
+	// execute方法：部署即执行
 	@Override
 	public String execute() throws Exception {
 		System.out.println("---> TestAction.execute()");

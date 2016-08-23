@@ -20,9 +20,29 @@
 			<result name="success">/test.jsp</result>
 		</action>
 
+		<!-- 岗位管理 -->
+		<action name="role_*" class="roleAction" method="{1}">
+			<!-- 有了method="{1}"这个属性，action的方法名和返回值一定要相同 -->
+			<result name="list">/WEB-INF/jsp/roleAction/old/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/roleAction/old/addUI.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/roleAction/old/editUI.jsp</result>
+			<!-- <result name="saveUI">/WEB-INF/jsp/roleAction/old/saveUI.jsp</result> -->
+
+
+			<!-- delete 方法对应返回 toList -->
+			<result name="toList" type="redirectAction">role_list</result>
+
+
+
+			<result name="list">/WEB-INF/jsp/roleAction/new/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/roleAction/new/saveUI.jsp</result>
+			<result name="editUI_new">/WEB-INF/jsp/roleAction/new/saveUI.jsp</result>
+
+		</action>
+
 
 	</package>
 
-	<!-- Add packages here -->
+
 
 </struts>

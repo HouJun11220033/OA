@@ -24,10 +24,10 @@ public class RoleAction extends ActionSupport implements ModelDriven<Role> {
 	// private Long id;
 	// private String name;
 	// private String description;
-
 	private Role model = new Role();
 
 	public Role getModel() {
+
 		return model;
 	}
 
@@ -46,7 +46,20 @@ public class RoleAction extends ActionSupport implements ModelDriven<Role> {
 
 	/** 添加页面 */
 	public String addUI() throws Exception {
+		return "addUI";
+	}
+
+	public String saveUI() throws Exception {
+
 		return "saveUI";
+	}
+
+	public String editUI_new() throws Exception {
+
+		Role role = roleService.getById(model.getId());
+		ActionContext.getContext().getValueStack().push(role);
+		return "editUI_new";
+
 	}
 
 	/** 添加 */
@@ -70,7 +83,7 @@ public class RoleAction extends ActionSupport implements ModelDriven<Role> {
 		Role role = roleService.getById(model.getId());
 		ActionContext.getContext().getValueStack().push(role);
 
-		return "saveUI";
+		return "editUI";
 	}
 
 	/** 修改 */
@@ -88,29 +101,4 @@ public class RoleAction extends ActionSupport implements ModelDriven<Role> {
 		return "toList";
 	}
 
-	// ---
-
-	// public Long getId() {
-	// return id;
-	// }
-	//
-	// public void setId(Long id) {
-	// this.id = id;
-	// }
-	//
-	// public String getName() {
-	// return name;
-	// }
-	//
-	// public void setName(String name) {
-	// this.name = name;
-	// }
-	//
-	// public String getDescription() {
-	// return description;
-	// }
-	//
-	// public void setDescription(String description) {
-	// this.description = description;
-	// }
 }
