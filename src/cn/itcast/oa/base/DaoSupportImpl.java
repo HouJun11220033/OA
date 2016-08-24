@@ -9,13 +9,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 @SuppressWarnings("unchecked")
-public abstract class BaseDaoImpl<T> implements BaseDao<T> {
+public abstract class DaoSupportImpl<T> implements DaoSupport<T> {
 
 	@Resource
 	private SessionFactory sessionFactory;
 	private Class<T> clazz;
 
-	public BaseDaoImpl() {
+	public DaoSupportImpl() {
 		// 使用反射技术得到T的真实类型
 		ParameterizedType pt = (ParameterizedType) this.getClass()
 				.getGenericSuperclass(); // 获取当前new的对象的 泛型的父类 类型

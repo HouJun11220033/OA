@@ -11,8 +11,10 @@ import cn.itcast.oa.domain.Role;
 
 @Service
 @Transactional
-public class RoleServiceImpl extends DaoSupportImpl<Role> {
+public class UserServiceImpl extends DaoSupportImpl<Role> {
 
+	// 已经不用Dao层了
+	// 直接继承已经写好的Dao实现类
 	@Resource
 	private RoleDao roleDao;
 
