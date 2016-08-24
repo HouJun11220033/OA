@@ -48,6 +48,9 @@ public class DepartmentAction extends ActionSupport implements
 		} else {
 			// 子部门列表
 			departmentList = departmentService.finChildList(parentId);
+			// 获取子部门的parent对象
+			Department parent = departmentService.getById(parentId);
+			ActionContext.getContext().put("parent", parent);
 
 		}
 
