@@ -7,16 +7,15 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Role;
 import cn.itcast.oa.service.RoleService;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 
 @Controller
 @Scope("prototype")
-public class RoleAction extends ActionSupport implements ModelDriven<Role> {
+public class RoleAction extends BaseAction<Role> {
 
 	@Resource
 	private RoleService roleService;

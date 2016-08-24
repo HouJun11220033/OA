@@ -2,26 +2,20 @@ package cn.itcast.oa.view.action;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Department;
-import cn.itcast.oa.service.DepartmentService;
 import cn.itcast.oa.util.DepartmentUtils;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 
 @Controller
 @Scope("prototype")
-public class DepartmentAction extends ActionSupport implements
-		ModelDriven<Department> {
+public class DepartmentAction extends BaseAction<Department> {
 
-	@Resource
-	private DepartmentService departmentService;
+	// ...........................Parent..................
 	private Long parentId;
 
 	public Long getParentId() {
@@ -32,16 +26,9 @@ public class DepartmentAction extends ActionSupport implements
 		this.parentId = parentId;
 	}
 
-	// ............................ModelDriven....................................
-	private Department model = new Department();
-
-	public Department getModel() {
-		return model;
-	}
-
 	// ........................................................................
 
-	/** 部门的列表 */
+	/** 列出部门 */
 	public String list() throws Exception {
 		List<Department> departmentList = null;
 		if (parentId == null) {
