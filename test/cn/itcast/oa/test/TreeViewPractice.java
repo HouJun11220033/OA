@@ -35,10 +35,11 @@ public class TreeViewPractice {
 	public void printAllDepts_1() {
 		List<Department> topList = findTopLevelDepartmentList();
 
-		for (Department top : topList) {
-			showTree(top);
-
-		}
+		// for (Department top : topList) {
+		// showTree(top);
+		//
+		// }
+		showTreeList(topList);
 
 	}
 
@@ -64,6 +65,10 @@ public class TreeViewPractice {
 	 * @param topList
 	 */
 	private void showTreeList(Collection<Department> topList) {
+		for (Department department : topList) {
+			System.out.println(department.getName());
+			showTreeList(department.getChildren());
+		}
 
 	}
 
@@ -86,11 +91,21 @@ public class TreeViewPractice {
 	 */
 	@Test
 	public void printAllDepts_2() {
+		List<Department> topList = findTopLevelDepartmentList();
+
+		showTreeList_2(topList, "┣");
 
 	}
 
 	// 显示树
 	private void showTreeList_2(Collection<Department> topList, String prefix) {
+		for (Department top : topList) {
+			System.out.println(prefix + top.getName());
+			// prefix = "   " + prefix;
+
+			showTreeList_2(top.getChildren(), "   " + prefix);
+
+		}
 
 	}
 

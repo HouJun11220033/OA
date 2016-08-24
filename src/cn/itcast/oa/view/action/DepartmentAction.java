@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import cn.itcast.oa.domain.Department;
 import cn.itcast.oa.service.DepartmentService;
+import cn.itcast.oa.util.DepartmentUtils;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -67,8 +68,12 @@ public class DepartmentAction extends ActionSupport implements
 
 	/** 添加页面 */
 	public String addUI() throws Exception {
-		// 准备数据
-		List<Department> departmentList = departmentService.findAll();
+		// =========准备数据==========
+		// 总是先拿到top部门
+		List<Department> topList = departmentService.findTopList();
+		List<Department> departmentList = DepartmentUtils
+				.getAllDepartments(topList);
+
 		// 放到Map里面
 		ActionContext.getContext().put("departmentList", departmentList);
 		return "saveUI";
@@ -91,13 +96,17 @@ public class DepartmentAction extends ActionSupport implements
 
 	/** 修改页面 */
 	public String editUI() throws Exception {
-		// 准备回显的数据
-		Department department = departmentService.getById(model.getId());
-		List<Department> departmentList = departmentService.findAll();
-		Department parent = departmentService.getById(parentId);
+		// 准备数据, departmentList
+		List<Department> topList = departmentService.findTopList();
+		List<Department> departmentList = DepartmentUtils
+				.getAllDepartments(topList);
 		ActionContext.getContext().put("departmentList", departmentList);
 
+		// 准备回显的数据
+		// 注意：显示上级部门的时候，要把整个树列出来!!!
+		Department department = departmentService.getById(model.getId());
 		ActionContext.getContext().getValueStack().push(department);
+
 		return "saveUI";
 	}
 
