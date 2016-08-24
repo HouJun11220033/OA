@@ -9,8 +9,9 @@ import cn.itcast.oa.domain.Department;
 public class DepartmentUtils {
 
 	public static List<Department> getAllDepartments(List<Department> topList) {
+		// 把遍历的结果放到这个集合里面
 		List<Department> list = new ArrayList<Department>();
-
+		// 调用遍历方法
 		walkDepartmentTreeList(topList, "┣", list);
 		return list;
 
