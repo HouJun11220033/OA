@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @SuppressWarnings("unchecked")
 public abstract class DaoSupportImpl<T> implements DaoSupport<T> {
 
