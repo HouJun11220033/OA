@@ -7,16 +7,6 @@ import cn.itcast.oa.domain.Department;
 
 public interface DepartmentService extends DaoSupport<Department> {
 
-	List<Department> findAll();
-
-	void delete(Long id);
-
-	void save(Department model);
-
-	Department getById(Long id);
-
-	void update(Department department);
-
 	/**
 	 * 查询顶级部门列表
 	 * 

@@ -2,14 +2,11 @@ package cn.itcast.oa.view.action;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Role;
-import cn.itcast.oa.service.RoleService;
 
 import com.opensymphony.xwork2.ActionContext;
 
@@ -17,18 +14,18 @@ import com.opensymphony.xwork2.ActionContext;
 @Scope("prototype")
 public class RoleAction extends BaseAction<Role> {
 
-	@Resource
-	private RoleService roleService;
+	// @Resource
+	// private RoleService roleService;
 
 	// private Long id;
 	// private String name;
 	// private String description;
-	private Role model = new Role();
-
-	public Role getModel() {
-
-		return model;
-	}
+	// private Role model = new Role();
+	//
+	// public Role getModel() {
+	//
+	// return model;
+	// }
 
 	/** 列表 */
 	public String list() throws Exception {

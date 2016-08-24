@@ -35,7 +35,7 @@ public class DepartmentAction extends BaseAction<Department> {
 			departmentList = departmentService.findTopList();
 		} else {
 			// 子部门列表
-			departmentList = departmentService.finChildList(parentId);
+			departmentList = departmentService.findChildren(parentId);
 			// 获取子部门的parent对象
 			Department parent = departmentService.getById(parentId);
 			ActionContext.getContext().put("parent", parent);

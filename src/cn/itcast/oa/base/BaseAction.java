@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import cn.itcast.oa.service.DepartmentService;
 import cn.itcast.oa.service.RoleService;
+import cn.itcast.oa.service.UserService;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -16,7 +17,6 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 
 	protected T model;
 
-	@Override
 	public T getModel() {
 
 		return model;
@@ -39,5 +39,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	protected RoleService roleService;
 	@Resource
 	protected DepartmentService departmentService;
+	@Resource
+	protected UserService userService;
 
 }

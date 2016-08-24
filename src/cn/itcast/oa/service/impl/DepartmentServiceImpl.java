@@ -11,10 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.itcast.oa.base.DaoSupportImpl;
 import cn.itcast.oa.dao.DepartmentDao;
 import cn.itcast.oa.domain.Department;
+import cn.itcast.oa.service.DepartmentService;
 
 @Service
 @Transactional
-public class DepartmentServiceImpl extends DaoSupportImpl<Department> {
+public class DepartmentServiceImpl extends DaoSupportImpl<Department> implements
+		DepartmentService {
 
 	@Resource
 	private DepartmentDao departmentDao;
@@ -53,7 +55,7 @@ public class DepartmentServiceImpl extends DaoSupportImpl<Department> {
 				.list();
 	}
 
-	public List<Department> finChildList(Long parentId) {
+	public List<Department> findChildren(Long parentId) {
 		return sessionFactory.getCurrentSession()//
 				.createQuery("FROM Department d WHERE d.parent.id=?")//
 				.setParameter(0, parentId)//
