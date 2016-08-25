@@ -19,7 +19,7 @@
 			<many-to-many class="User" column="userId"></many-to-many>
 		</set>
 
-		<set name="privileges" table="itcast_role_privilege">
+		<set name="privileges" table="itcast_role_privilege" lazy="false">
 			<key column="roleId"></key>
 			<many-to-many class="Privilege" column="privilegeId"></many-to-many>
 

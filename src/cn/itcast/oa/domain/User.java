@@ -5,6 +5,7 @@ import java.util.Set;
 
 /**
  * 用户
+ * 
  * @author tyg
  * 
  */
@@ -99,6 +100,31 @@ public class User {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	// 判断本用户是否有指定名称的权限
+	public boolean hasPrivilegeByName(String name) {
+		if (isAdmin()) {
+			return true;
+		}
+		for (Role role : roles) {
+			for (Privilege privilege : role.getPrivileges()) {
+				if (privilege.getName().equals(name)) {
+					return true;
+				}
+			}
+		}
+		return false;
+
+	}
+
+	/**
+	 * 判断本用户是否是超级管理员
+	 * 
+	 * @return
+	 */
+	public boolean isAdmin() {
+		return "admin".equals(loginName);
 	}
 
 }

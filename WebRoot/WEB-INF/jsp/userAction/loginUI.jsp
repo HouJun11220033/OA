@@ -56,7 +56,7 @@
 					</table>
 				</div>
 				<div id="CopyRight">
-					<a href="javascript:void(0)">&copy; 2010 版权所有 itcast</a>
+					<a href="javascript:void(0)">&copy; 2016 版权所有 河南大学</a>
 				</div>
 			</div>
 		</div>

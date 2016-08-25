@@ -138,7 +138,7 @@ public class RoleAction extends BaseAction<Role> {
 	public String setPrivilege() throws Exception {
 
 		Role role = roleService.getById(model.getId());
-		List<Privilege> privilegeList = privilegeService.findAll();
+		List<Privilege> privilegeList = privilegeService.getByIds(privilegeIds);
 		role.setPrivileges(new HashSet<Privilege>(privilegeList));
 
 		roleService.update(role);
