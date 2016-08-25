@@ -15,6 +15,16 @@ public class Privilege {
 		return id;
 	}
 
+	public Privilege() {
+	}
+
+	public Privilege(String url, String name, Privilege parent) {
+		super();
+		this.url = url;
+		this.name = name;
+		this.parent = parent;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}

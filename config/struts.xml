@@ -37,6 +37,8 @@
 			<result name="list">/WEB-INF/jsp/roleAction/new/list.jsp</result>
 			<result name="saveUI">/WEB-INF/jsp/roleAction/new/saveUI.jsp</result>
 			<result name="editUI_new">/WEB-INF/jsp/roleAction/new/saveUI.jsp</result>
+			<result name="setPrivilegeUI">/WEB-INF/jsp/roleAction/new/setPrivilegeUI.jsp
+			</result>
 
 		</action>
 
