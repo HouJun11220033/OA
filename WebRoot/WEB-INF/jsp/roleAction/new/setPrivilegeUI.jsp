@@ -9,6 +9,22 @@
 	href="${pageContext.request.contextPath}/style/blue/file.css" />
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/script/jquery_treeview/jquery.treeview.css" />
+<script type="text/javascript">
+	$(function() {
+		// 指定事件处理函数
+		$("[name=privilegeIds]").click(function() {
+
+			// 当选中或取消一个权限时，也同时选中或取消所有的下级权限
+			$(this).siblings("ul").find("input").attr("checked", this.checked);
+
+			// 当选中一个权限时，也要选中所有的直接上级权限
+			if (this.checked == true) {
+				$(this).parents("li").children("input").attr("checked", true);
+			}
+
+		});
+	});
+</script>
 </head>
 <body>
 
@@ -61,8 +77,44 @@
 						<tbody id="TableData">
 							<tr class="TableDetail1">
 								<!-- 显示权限树 -->
-								<td><s:checkboxlist name="privilegeIds"
-										list="#privilegeList" listKey="id" listValue="name"></s:checkboxlist>
+								<td>
+									<%-- 
+<s:checkboxlist name="privilegeIds" list="#privilegeList" listKey="id" listValue="name"></s:checkboxlist>
+--%> <%-- 
+<s:iterator value="#privilegeList">
+	<input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}"
+		<s:property value="%{id in privilegeIds ? 'checked' : ''}"/>
+	/>
+	<label for="cb_${id}">${name}</label>
+	<br/>
+</s:iterator>
+--%> <!-- 显示树状结构内容 -->
+									<ul id="tree">
+										<s:iterator value="#application.topPrivilegeList">
+											<li><input type="checkbox" name="privilegeIds"
+												value="${id}" id="cb_${id}"
+												<s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
+												<label for="cb_${id}"><span class="folder">${name}</span></label>
+												<ul>
+													<s:iterator value="children">
+														<li><input type="checkbox" name="privilegeIds"
+															value="${id}" id="cb_${id}"
+															<s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
+															<label for="cb_${id}"><span class="folder">${name}</span></label>
+															<ul>
+																<s:iterator value="children">
+																	<li><input type="checkbox" name="privilegeIds"
+																		value="${id}" id="cb_${id}"
+																		<s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
+																		<label for="cb_${id}"><span class="folder">${name}</span></label>
+																	</li>
+																</s:iterator>
+															</ul></li>
+													</s:iterator>
+												</ul></li>
+										</s:iterator>
+									</ul>
+
 
 								</td>
 							</tr>
@@ -70,6 +122,10 @@
 					</table>
 				</div>
 			</div>
+
+			<script language="javascript">
+				$("#tree").treeview();
+			</script>
 
 			<!-- 表单操作 -->
 			<div id="InputDetailBar">

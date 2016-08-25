@@ -136,11 +136,14 @@ public class RoleAction extends BaseAction<Role> {
 
 	// 设置权限动作
 	public String setPrivilege() throws Exception {
-
+		// 1，从数据库中获取原对象
 		Role role = roleService.getById(model.getId());
+
+		// 2，设置要修改的属性
 		List<Privilege> privilegeList = privilegeService.getByIds(privilegeIds);
 		role.setPrivileges(new HashSet<Privilege>(privilegeList));
 
+		// 3，更新到数据库
 		roleService.update(role);
 
 		return "toList";
