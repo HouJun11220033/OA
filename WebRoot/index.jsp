@@ -23,7 +23,7 @@
 </head>
 
 <body>
-	This is my JSP page.
+	[${user.name}]
 	<br>
 </body>
 </html>

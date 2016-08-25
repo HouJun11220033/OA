@@ -5,4 +5,6 @@ import cn.itcast.oa.domain.User;
 
 public interface UserService extends DaoSupport<User> {
 
+	public User findByLoginNameAndPassword(String loginName, String password);
+
 }

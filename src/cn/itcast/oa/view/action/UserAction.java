@@ -148,4 +148,29 @@ public class UserAction extends BaseAction<User> {
 		return "toList";
 	}
 
+	/* 登陆页面 */
+	public String loginUI() throws Exception {
+		return "loginUI";
+	}
+
+	/* 登陆操作 */
+	public String login() throws Exception {
+
+		User user = userService.findByLoginNameAndPassword(
+				model.getLoginName(), model.getPassword());
+		if (user == null) {
+			addFieldError("login", "用户名或密码不正确！");
+			return "loginUI";
+		} else {
+			ActionContext.getContext().getSession().put("user", user);
+			return "toIndex";
+		}
+	}
+
+	public String logoutUI() throws Exception {
+		ActionContext.getContext().getSession().remove("user");
+
+		return "logoutUI";
+	}
+
 }
