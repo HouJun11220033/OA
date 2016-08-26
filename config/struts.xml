@@ -16,6 +16,29 @@
 
 		<!-- 配置测试用的Action，未与Spring整合，class属性写类的全名 -->
 		<!-- 当Struts2与Spring整合后，class属性可以写bean的名称 -->
+		<interceptors>
+			<interceptor name="checkPrivilege"
+				class="cn.itcast.oa.util.CheckPrivilegeInterceptor"></interceptor>
+			<!-- 拦截器栈 -->
+			<!-- 覆盖原来，多了一个自定义的拦截器 -->
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="checkPrivilege"></interceptor-ref>
+
+				<!-- defaultStack里面有18个拦截器 -->
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- 配置全局Result,所有人转到登陆页面 -->
+		<global-results>
+			<result name="loginUI">/WEB-INF/jsp/userAction/loginUI.jsp</result>
+			<result name="noPrivilegeError">/noPrivilegeError.jsp</result>
+		</global-results>
+
+
+
+
+
 		<action name="test" class="testAction">
 			<result name="success">/test.jsp</result>
 		</action>
@@ -27,16 +50,15 @@
 			<result name="addUI">/WEB-INF/jsp/roleAction/old/addUI.jsp</result>
 			<result name="editUI">/WEB-INF/jsp/roleAction/old/editUI.jsp</result>
 			<!-- <result name="saveUI">/WEB-INF/jsp/roleAction/old/saveUI.jsp</result> -->
-
-
 			<!-- delete 方法对应返回 toList -->
+
+			<!-- New!!!!!!!!!!!!!!!!!!! -->
+
+
 			<result name="toList" type="redirectAction">role_list</result>
-
-
-
 			<result name="list">/WEB-INF/jsp/roleAction/new/list.jsp</result>
 			<result name="saveUI">/WEB-INF/jsp/roleAction/new/saveUI.jsp</result>
-			<result name="editUI_new">/WEB-INF/jsp/roleAction/new/saveUI.jsp</result>
+
 			<result name="setPrivilegeUI">/WEB-INF/jsp/roleAction/new/setPrivilegeUI.jsp
 			</result>
 
@@ -55,11 +77,12 @@
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
 			<result name="saveUI">/WEB-INF/jsp/userAction/saveUI.jsp</result>
-			<result name="loginUI">/WEB-INF/jsp/userAction/loginUI.jsp</result>
+			<!-- <result name="loginUI">/WEB-INF/jsp/userAction/loginUI.jsp</result> -->
 			<result name="logoutUI">/WEB-INF/jsp/userAction/logoutUI.jsp</result>
 			<result name="toIndex" type="redirect">/index.jsp</result>
-			<result name="toList" type="redirectAction">user_list
-			</result>
+			<result name="toList" type="redirectAction">user_list</result>
+
+
 		</action>
 
 		<!-- 首页 -->

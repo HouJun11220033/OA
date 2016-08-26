@@ -148,6 +148,8 @@ public class UserAction extends BaseAction<User> {
 		return "toList";
 	}
 
+	/************************ 登陆 **********************/
+
 	/* 登陆页面 */
 	public String loginUI() throws Exception {
 		return "loginUI";
