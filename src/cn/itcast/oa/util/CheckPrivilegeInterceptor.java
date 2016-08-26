@@ -13,7 +13,6 @@ public class CheckPrivilegeInterceptor extends AbstractInterceptor {
 		System.out.println("--------------->Before!!!");
 		// String result = invocation.invoke();
 
-
 		User user = (User) ActionContext.getContext().getSession().get("user");
 		String nameSpace = invocation.getProxy().getNamespace();
 		String actionName = invocation.getProxy().getActionName();
@@ -28,9 +27,7 @@ public class CheckPrivilegeInterceptor extends AbstractInterceptor {
 				// 如果不是去登录，就转到登录页面
 				return "loginUI";
 			}
-		}
-		// 如果已登录，就判断权限
-		else {
+		} else {
 			if (user.hasPrivilegeByUrl(privUrl)) {
 				// 如果有权限，就放行
 				return invocation.invoke();
@@ -38,8 +35,9 @@ public class CheckPrivilegeInterceptor extends AbstractInterceptor {
 				// 如果没有权限，就转到提示页面
 				return "noPrivilegeError";
 			}
-		}
 
+		}
+		// 如果已登录，就判断权限
 
 	}
 

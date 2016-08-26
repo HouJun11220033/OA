@@ -9,4 +9,6 @@ public interface PrivilegeService extends DaoSupport<Privilege> {
 
 	public List<Privilege> findTopList();
 
+	public java.util.Collection<String> getAllPrivilegeUrls();
+
 }

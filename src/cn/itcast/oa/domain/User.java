@@ -1,15 +1,13 @@
 package cn.itcast.oa.domain;
 
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * 用户
- * 
- * @author tyg
- * 
- */
-public class User {
+import com.opensymphony.xwork2.ActionContext;
+
+public class User implements Serializable {
 	private Long id;
 	private Department department;
 	private Set<Role> roles = new HashSet<Role>();
@@ -127,26 +125,45 @@ public class User {
 		return "admin".equals(loginName);
 	}
 
+	/**
+	 * 判断是否有本Url的权限
+	 * 
+	 * @return
+	 */
 	public boolean hasPrivilegeByUrl(String privUrl) {
-
+		// 是否是管理员
 		if (isAdmin()) {
 			return true;
 		}
-		// 去UI
+		// 去UI后缀
 		if (privUrl.endsWith("UI")) {
 			privUrl = privUrl.substring(0, privUrl.length() - 2);
 		}
 
-		// 去问号以及后面
-		// 得到？对应的索引
+		// 去问号以及后面的字符串，必须先得到？对应的索引
 		int pos = privUrl.indexOf("?");
 		if (pos > -1) {
 			privUrl = privUrl.substring(0, pos);
 		}
 
-		//
+		// 所有权限，如果不在这个所有权限里面,那就说明只能请求登陆和注销和设置权限功能（所有数据库中没有的权限）
+		Collection<String> allPrivilegeUrls = (Collection<String>) ActionContext
+				.getContext().getApplication().get("allPrivilegeUrls");
+		if (!allPrivilegeUrls.contains(privUrl)) {
+			return true;
+		} else {
+			for (Role role : roles) {
 
-		return false;
+				for (Privilege privilege : role.getPrivileges()) {
+					if (privUrl.equals(privilege.getUrl())) {
+						return true;
+					}
+				}
+
+			}
+			return false;
+		}
+
 	}
 
 }
