@@ -127,4 +127,26 @@ public class User {
 		return "admin".equals(loginName);
 	}
 
+	public boolean hasPrivilegeByUrl(String privUrl) {
+
+		if (isAdmin()) {
+			return true;
+		}
+		// 去UI
+		if (privUrl.endsWith("UI")) {
+			privUrl = privUrl.substring(0, privUrl.length() - 2);
+		}
+
+		// 去问号以及后面
+		// 得到？对应的索引
+		int pos = privUrl.indexOf("?");
+		if (pos > -1) {
+			privUrl = privUrl.substring(0, pos);
+		}
+
+		//
+
+		return false;
+	}
+
 }

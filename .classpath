@@ -26,11 +26,11 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-io-1.3.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/freemarker-2.3.15.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ognl-2.7.3.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2-core-2.1.8.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-core-2.1.6.jar" sourcepath="C:/Users/Administrator/Desktop/Jar包/xwork-core-2.2.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2-spring-plugin-2.1.8.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/c3p0-0.9.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-codec.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2-core-2.1.8.1.jar" sourcepath="F:/Code!/JavaEE大型项目/汤阳光OA项目实战视频/上课用的开发包与软件/Struts2开发包__struts-2.1.8.1-all.zip"/>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.spring_4.1">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="WEB-INF/lib"/>
