@@ -70,7 +70,8 @@ public class AnchorTag extends AbstractClosingTag {
 		}
 	}
 
-	public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+	public Component getBean(ValueStack stack, HttpServletRequest req,
+			HttpServletResponse res) {
 		return new Anchor(stack, req, res);
 	}
 
@@ -94,13 +95,15 @@ public class AnchorTag extends AbstractClosingTag {
 			tag.setEncode(Boolean.valueOf(encode).booleanValue());
 		}
 		if (includeContext != null) {
-			tag.setIncludeContext(Boolean.valueOf(includeContext).booleanValue());
+			tag.setIncludeContext(Boolean.valueOf(includeContext)
+					.booleanValue());
 		}
 		if (escapeAmp != null) {
 			tag.setEscapeAmp(Boolean.valueOf(escapeAmp).booleanValue());
 		}
 		if (forceAddSchemeHostAndPort != null) {
-			tag.setForceAddSchemeHostAndPort(Boolean.valueOf(forceAddSchemeHostAndPort).booleanValue());
+			tag.setForceAddSchemeHostAndPort(Boolean.valueOf(
+					forceAddSchemeHostAndPort).booleanValue());
 		}
 	}
 
