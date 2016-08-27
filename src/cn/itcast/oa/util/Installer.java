@@ -77,6 +77,15 @@ public class Installer {
 		session.save(menu4);
 		session.save(menu5);
 
+		// .......................论坛.............................................//
+
+		menu = new Privilege("网上交流", null, null);
+		menu1 = new Privilege("论坛管理", "/forumManage_list", menu);
+		menu2 = new Privilege("论坛", "/forum_list", menu);
+		session.save(menu);
+		session.save(menu1);
+		session.save(menu2);
+
 	}
 
 	public static void main(String[] args) {

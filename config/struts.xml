@@ -97,7 +97,6 @@
 			<result name="saveUI">/WEB-INF/jsp/forumManageAction/saveUI.jsp
 			</result>
 			<result name="toList" type="redirectAction">forumManage_list</result>
-
 		</action>
 
 

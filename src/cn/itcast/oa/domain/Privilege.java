@@ -19,7 +19,7 @@ public class Privilege implements Serializable {
 	public Privilege() {
 	}
 
-	public Privilege(String url, String name, Privilege parent) {
+	public Privilege(String name, String url, Privilege parent) {
 		super();
 		this.url = url;
 		this.name = name;

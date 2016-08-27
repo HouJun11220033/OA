@@ -10,8 +10,6 @@
 	src="${pageContext.request.contextPath}/script/jquery_treeview/jquery.cookie.js"></script>
 </head>
 
-
-
 <frameset rows="100,*,25" framespacing=0 border=0 frameborder="0">
 	<frame noresize name="TopMenu" scrolling="no"
 		src="${pageContext.request.contextPath}/home_top.action">

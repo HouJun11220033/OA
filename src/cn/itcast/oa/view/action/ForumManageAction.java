@@ -63,13 +63,15 @@ public class ForumManageAction extends BaseAction<Forum> {
 
 	/** 上移 */
 	public String moveUp() throws Exception {
-		return null;
+		forumService.moveUp(model.getId());
+		return "toList";
 
 	}
 
 	/** 下移 */
 	public String moveDown() throws Exception {
-		return null;
+		forumService.moveDown(model.getId());
+		return "toList";
 
 	}
 
