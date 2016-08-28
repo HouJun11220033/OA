@@ -12,7 +12,7 @@ public class ReplyAction extends BaseAction<Forum> {
 
 	// 这个回复指的是这个动作
 	public String addUI() {
-		return null;
+		return "addUI";
 	}
 
 	public String add() {

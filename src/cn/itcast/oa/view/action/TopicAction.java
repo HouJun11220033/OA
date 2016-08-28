@@ -10,7 +10,7 @@ import cn.itcast.oa.domain.Topic;
 @Scope("prototype")
 public class TopicAction extends BaseAction<Topic> {
 	public String addUI() {
-		return null;
+		return "addUI";
 	}
 
 	public String add() {
@@ -18,7 +18,7 @@ public class TopicAction extends BaseAction<Topic> {
 	}
 
 	public String show() {
-		return null;
+		return "show";
 	}
 
 }

@@ -10,11 +10,11 @@ import cn.itcast.oa.domain.Forum;
 @Scope("prototype")
 public class ForumAction extends BaseAction<Forum> {
 	public String list() {
-		return null;
+		return "list";
 	}
 
 	public String show() {
-		return null;
+		return "show";
 	}
 
 }
