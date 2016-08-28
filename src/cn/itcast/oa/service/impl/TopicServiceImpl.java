@@ -18,8 +18,8 @@ public class TopicServiceImpl extends DaoSupportImpl<Topic> implements
 
 	@Override
 	public List<Topic> findByForum(Forum forum) {
-		// TODO Auto-generated method stub
 		return null;
+
 	}
 
 }

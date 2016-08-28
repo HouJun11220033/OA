@@ -4,12 +4,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * 版块
- * 
- * @author tyg
- * 
- */
 public class Forum implements Serializable {
 	private Long id;
 	private String name;
