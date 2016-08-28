@@ -4,6 +4,7 @@ import java.lang.reflect.ParameterizedType;
 
 import javax.annotation.Resource;
 
+import cn.itcast.oa.domain.User;
 import cn.itcast.oa.service.DepartmentService;
 import cn.itcast.oa.service.ForumService;
 import cn.itcast.oa.service.PrivilegeService;
@@ -11,6 +12,7 @@ import cn.itcast.oa.service.RoleService;
 import cn.itcast.oa.service.TopicService;
 import cn.itcast.oa.service.UserService;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -26,6 +28,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	}
 
 	public BaseAction() {
+		// 反射生成实例！！！
 		try {
 			ParameterizedType pType = (ParameterizedType) this.getClass()
 					.getGenericSuperclass();
@@ -34,6 +37,11 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public User getCurrentUser() {
+		return (User) ActionContext.getContext().getSession().get("user");
+
 	}
 
 	// =============== Service实例的声明 ==================
