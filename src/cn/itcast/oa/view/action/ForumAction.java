@@ -30,8 +30,8 @@ public class ForumAction extends BaseAction<Forum> {
 		Forum forum = forumService.getById(model.getId());
 		ActionContext.getContext().put("forum", forum);
 
-		// 准备数据：topicList
-		List<Topic> topicList = topicService.findAll();
+		// 根据版块准备数据：topicList
+		List<Topic> topicList = topicService.findByForum(forum);
 		ActionContext.getContext().put("topicList", topicList);
 
 		return "show";

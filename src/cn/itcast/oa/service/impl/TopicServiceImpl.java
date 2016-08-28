@@ -34,10 +34,17 @@ public class TopicServiceImpl extends DaoSupportImpl<Topic> implements
 
 	}
 
+	// 传入一个forum对象，得到一个topic集合
+	// 因为forum对象里面包含topic集合，所以需要传入一个forum对象
 	@Override
 	public List<Topic> findByForum(Forum forum) {
-		return null;
+		return getSession()
+				.createQuery(
+				// 需求:置顶帖一直在上面，且按最后一次更新时间降序排序
+				// 精华帖和普通贴一律按普通贴处理,排在置顶帖下面，且按最后一次更新时间降序排序
+						"FROM Topic t WHERE t.forum=? ORDER BY (CASE t.type WHEN 2 THEN 2 ELSE 0 END) DESC, t.lastUpdateTime DESC")//
+				.setParameter(0, forum)//
+				.list();
 
 	}
-
 }
