@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.itcast.oa.base.DaoSupportImpl;
+import cn.itcast.oa.domain.Forum;
 import cn.itcast.oa.domain.Reply;
 import cn.itcast.oa.domain.Topic;
 import cn.itcast.oa.service.ReplyService;
@@ -16,10 +17,30 @@ import cn.itcast.oa.service.ReplyService;
 public class ReplyServiceImpl extends DaoSupportImpl<Reply> implements
 		ReplyService {
 
-	@Override
+	// 列出所有回复（通过topic查找）
 	public List<Reply> findByTopic(Topic topic) {
-		// TODO Auto-generated method stub
-		return null;
+		return getSession().createQuery(//
+				"FROM Reply r WHERE r.topic=? ORDER BY r.postTime ASC")//
+				.setParameter(0, topic)//
+				.list();
+	}
+
+	@Override
+	public void save(Reply reply) {
+		// 1，保存
+		getSession().save(reply);
+
+		// 2，维护相关的信息
+		Topic topic = reply.getTopic();
+		Forum forum = topic.getForum();
+
+		forum.setArticleCount(forum.getArticleCount() + 1); // 文章数量（主题数+回复数）
+		topic.setReplyCount(topic.getReplyCount() + 1); // 回复数量
+		topic.setLastReply(reply); // 最后发表的回复
+		topic.setLastUpdateTime(reply.getPostTime()); // 最后更新时间（主题的发表时间或最后回复的时间）
+
+		getSession().update(topic);
+		getSession().update(forum);
 	}
 
 }

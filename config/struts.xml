@@ -123,6 +123,8 @@
 
 		<action name="reply_*" class="replyAction" method="{1}">
 			<result name="addUI">/WEB-INF/jsp/replyAction/addUI.jsp</result>
+			<!-- 重定向的时候需要指明ID -->
+			<!-- 这个ID是在action里面定义的 -->
 			<result name="toTopicShow" type="redirectAction">topic_show?id=${topicId}
 			</result>
 		</action>
