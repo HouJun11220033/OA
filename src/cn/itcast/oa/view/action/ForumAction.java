@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Forum;
-import cn.itcast.oa.domain.Topic;
+import cn.itcast.oa.domain.PageBean;
 
 import com.opensymphony.xwork2.ActionContext;
 
@@ -31,8 +31,12 @@ public class ForumAction extends BaseAction<Forum> {
 		ActionContext.getContext().put("forum", forum);
 
 		// 根据版块准备数据：topicList
-		List<Topic> topicList = topicService.findByForum(forum);
-		ActionContext.getContext().put("topicList", topicList);
+		// List<Topic> topicList = topicService.findByForum(forum);
+		// ActionContext.getContext().put("topicList", topicList);
+		// 准备分页信息 v1
+		PageBean pageBean = topicService.getPageBeanByForum(pageNum, pageSize,
+				forum);
+		ActionContext.getContext().getValueStack().push(pageBean);
 
 		return "show";
 	}

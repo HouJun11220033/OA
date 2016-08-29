@@ -64,4 +64,25 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	@Resource
 	protected ReplyService replyService;
 
+	// ============== 分页用的参数 =============
+
+	protected int pageNum = 1; // 当前页
+	protected int pageSize = 10; // 每页显示多少条记录
+
+	public int getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
 }

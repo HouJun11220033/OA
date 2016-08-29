@@ -9,6 +9,7 @@ import cn.itcast.oa.domain.Topic;
 
 public interface TopicService extends DaoSupport<Topic> {
 
+	@Deprecated
 	/**
 	 * 查询指定版块中的所有主题，排序：所有置顶帖在最上面，并按最后更新时间排序，让新状态的在上面。
 	 * 
