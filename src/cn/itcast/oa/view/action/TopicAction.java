@@ -1,7 +1,6 @@
 package cn.itcast.oa.view.action;
 
 import java.util.Date;
-import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Forum;
-import cn.itcast.oa.domain.Reply;
+import cn.itcast.oa.domain.PageBean;
 import cn.itcast.oa.domain.Topic;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -18,6 +17,24 @@ import com.opensymphony.xwork2.ActionContext;
 @Scope("prototype")
 public class TopicAction extends BaseAction<Topic> {
 	private Long forumId;
+	private int pageNum = 1;
+	private int pageSize = 10;
+
+	public int getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
 
 	public String addUI() {
 		// 隶属于哪一个版块
@@ -48,8 +65,12 @@ public class TopicAction extends BaseAction<Topic> {
 		Topic topic = topicService.getById(model.getId());
 		ActionContext.getContext().put("topic", topic);
 
-		List<Reply> replyList = replyService.findByTopic(topic);
-		ActionContext.getContext().put("replyList", replyList);
+		// List<Reply> replyList = replyService.findByTopic(topic);
+		// ActionContext.getContext().put("replyList", replyList);
+		// 准备分页信息
+		PageBean pageBean = replyService.getPageBeanByTopic(pageNum, pageSize,
+				topic);
+		ActionContext.getContext().getValueStack().push(pageBean);
 
 		return "show";
 	}
