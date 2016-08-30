@@ -26,7 +26,18 @@ public class TestService {
 	}
 
 	@Test
-	public void test(){
+	public void test() {
 		System.out.println("!!!");
+	}
+
+	@Transactional
+	public void saveUser25() {
+		Session session = sessionFactory.getCurrentSession();
+
+		for (int i = 0; i < 25; i++) {
+			User user = new User();
+			user.setName("test" + ('A' + i));
+			session.save(user);
+		}
 	}
 }

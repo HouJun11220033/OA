@@ -46,7 +46,6 @@ public class PageBean {
 		}
 	}
 
-
 	public int getCurrentPage() {
 		return currentPage;
 	}

@@ -28,6 +28,7 @@ public class SpringTest {
 	@Test
 	public void testTransaction() throws Exception {
 		TestService testService = (TestService) ac.getBean("testService");
-		testService.saveTwoUsers();
+		// testService.saveTwoUsers();
+		testService.saveUser25();
 	}
 }
